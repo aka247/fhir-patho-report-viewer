@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="fhir-client.js"></script>
+    <script>
+      var client_id = "8922ce55-f924-4489-a77b-4f3711465924";
+      var scope = "patient/Patient.read patient/Medication.read";
+      var issuer = getParameterByName("iss");
+
+      FHIR.oauth2.authorize({
+        "client_id": client_id,
+        "scope":  scope
+      });
+
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}      
+    </script>
+  </head>
+  Loading...
+</html>
